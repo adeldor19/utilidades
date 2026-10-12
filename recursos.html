@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f8fa">
+<meta name="description" content="Banco personal de actividades, proyectos y recursos docentes de ProfeAlbertoD.">
+<title>Banco de recursos · ProfeAlbertoD</title>
+<style>
+:root{--bg:#f7f8fa;--paper:#fff;--ink:#222320;--muted:#70716b;--line:#e6e8eb;--orange:#df6b35;--orange-soft:#fff0e7;--blue:#416c9f;--blue-soft:#eaf1fa;--green:#347354;--red:#a63c34;--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.shell{width:min(1160px,calc(100% - 36px));margin:auto}
+header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.04em}.mark{width:39px;height:39px;border-radius:12px;background:var(--orange);display:grid;place-items:center;color:white;font-size:20px}.brand small{display:block;font-size:10px;letter-spacing:.13em;color:var(--muted);margin-top:1px}.back{font-size:13px;color:var(--muted);font-weight:650}.back:hover{color:var(--orange)}
+main{padding:40px 0 60px}.eyebrow{color:var(--orange);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}h1{font-size:clamp(32px,5vw,48px);letter-spacing:-.06em;line-height:1.08;margin:10px 0 12px}.intro{color:#64655f;max-width:650px;margin:0}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 22px}.btn{border:1px solid var(--line);background:white;color:var(--ink);border-radius:11px;padding:10px 14px;font-weight:700;font-size:13px;display:inline-flex;align-items:center;justify-content:center;gap:8px}.btn:hover{border-color:#c7c9c3}.btn.primary{background:var(--orange);border-color:var(--orange);color:white}.btn.primary:hover{background:#c85b2a}.btn.ghost{background:transparent}.btn.danger{color:var(--red)}.btn.small{padding:7px 10px;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 24px}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:15px 17px}.stat strong{font-size:25px;letter-spacing:-.04em;display:block}.stat span{font-size:12px;color:var(--muted)}
+.filters{display:grid;grid-template-columns:minmax(180px,1.6fr) repeat(3,minmax(135px,1fr));gap:10px;margin-bottom:17px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:11px;font-weight:800;color:#5f605a}.field input,.field select,.field textarea{width:100%;border:1px solid #dfe1e4;border-radius:10px;background:#fff;padding:11px 12px;outline:none;color:var(--ink)}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px #df6b351a}.field textarea{min-height:95px;resize:vertical}
+.results-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 13px}.results-head h2{font-size:18px;letter-spacing:-.03em;margin:0}.results-head p{font-size:12px;color:var(--muted);margin:3px 0 0}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.resource{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;min-height:250px;box-shadow:0 5px 20px #20202005}.resource:hover{border-color:#d4d6d0}.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.tag{display:inline-flex;align-items:center;border-radius:7px;padding:5px 8px;background:var(--blue-soft);color:#315a89;font-size:10px;font-weight:800}.course{font-size:11px;color:var(--muted);font-weight:650}.resource h3{font-size:18px;line-height:1.25;letter-spacing:-.035em;margin:15px 0 8px}.resource p{font-size:13px;color:#64655f;margin:0 0 13px;white-space:pre-wrap}.meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto;padding-top:9px}.chip{font-size:10px;color:#686962;background:#f3f4f1;border-radius:20px;padding:5px 8px}.card-actions{display:flex;gap:7px;flex-wrap:wrap;border-top:1px solid #eff0ec;margin-top:15px;padding-top:12px}.empty{border:1px dashed #d6d8d1;border-radius:16px;padding:40px 20px;text-align:center;background:#ffffff8c}.empty strong{font-size:17px}.empty p{font-size:13px;color:var(--muted);max-width:420px;margin:8px auto 16px}.footnote{margin-top:27px;padding:17px 0;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.dialog-backdrop{position:fixed;inset:0;background:#20221fcc;display:none;align-items:center;justify-content:center;padding:18px;z-index:10}.dialog-backdrop.open{display:flex}.dialog{background:var(--bg);border-radius:20px;width:min(720px,100%);max-height:92vh;overflow:auto;box-shadow:0 25px 90px #0003}.dialog-head{padding:20px 23px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}.dialog-head h2{margin:0;font-size:22px;letter-spacing:-.04em}.close{border:0;background:transparent;font-size:25px;color:var(--muted);padding:0 5px}.dialog-body{padding:22px 23px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field.full{grid-column:1/-1}.dialog-actions{display:flex;justify-content:space-between;gap:10px;padding:16px 23px;border-top:1px solid var(--line);background:#fff}.hint{font-size:11px;color:var(--muted);margin-top:5px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#242620;color:white;border-radius:12px;padding:11px 16px;font-size:13px;box-shadow:0 8px 30px #0002;display:none;z-index:20}.toast.show{display:block}
+@media(max-width:850px){.filters{grid-template-columns:1fr 1fr}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.shell{width:calc(100% - 26px)}header{height:66px}.brand small{font-size:9px}.back{font-size:12px}main{padding-top:30px}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:22px}.stat span{font-size:10px}.filters,.cards,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.results-head{align-items:flex-start;flex-direction:column}.dialog-head,.dialog-body{padding:17px}.dialog-actions{padding:13px 17px}.toolbar .btn{flex:1}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+<a class="brand" href="./" aria-label="Volver al inicio"><span class="mark">P.</span><span>ProfeAlbertoD<small>UTILIDADES DOCENTES</small></span></a>
+<a class="back" href="./">← Volver al inicio</a>
+</header>
+<main>
+<div class="eyebrow">Área 02 · Recursos reutilizables</div>
+<h1>Tu biblioteca de aula.</h1>
+<p class="intro">Guarda actividades, proyectos e ideas en un mismo lugar. Busca, edita, duplica y exporta tus recursos para volver a utilizarlos cuando los necesites.</p>
+<div class="toolbar">
+<button class="btn primary" id="addBtn">＋ Añadir recurso</button>
+<button class="btn" id="exportBtn">↓ Exportar copia JSON</button>
+<button class="btn" id="importBtn">↑ Importar copia</button>
+<input type="file" id="importFile" accept=".json,application/json" hidden>
+</div>
+<section class="stats" aria-label="Resumen de recursos">
+<div class="stat"><strong id="totalStat">0</strong><span>Recursos guardados</span></div>
+<div class="stat"><strong id="projectsStat">0</strong><span>Proyectos</span></div>
+<div class="stat"><strong id="coursesStat">0</strong><span>Cursos distintos</span></div>
+</section>
+<section class="filters" aria-label="Buscar y filtrar recursos">
+<div class="field"><label for="searchInput">BUSCAR</label><input id="searchInput" type="search" placeholder="Título, contenido, etiquetas…"></div>
+<div class="field"><label for="typeFilter">TIPO DE RECURSO</label><select id="typeFilter"><option value="">Todos los tipos</option><option>Actividad</option><option>Proyecto</option><option>Plantilla</option><option>Idea</option><option>Otro</option></select></div>
+<div class="field"><label for="courseFilter">CURSO</label><select id="courseFilter"><option value="">Todos los cursos</option></select></div>
+<div class="field"><label for="subjectFilter">MATERIA</label><select id="subjectFilter"><option value="">Todas las materias</option></select></div>
+</section>
+<div class="results-head"><div><h2>Recursos guardados</h2><p id="resultCount">Todavía no hay recursos.</p></div><button class="btn ghost small" id="clearFilters">Limpiar filtros</button></div>
+<section class="cards" id="resourceCards" aria-live="polite"></section>
+<div class="footnote">Los recursos se guardan en este navegador, en este dispositivo. Exporta una copia JSON periódicamente para conservarlos o trasladarlos a otro dispositivo.</div>
+</main>
+</div>
+
+<div class="dialog-backdrop" id="dialogBackdrop" role="presentation">
+<section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+<div class="dialog-head"><h2 id="dialogTitle">Añadir recurso</h2><button class="close" id="closeDialog" aria-label="Cerrar">×</button></div>
+<form id="resourceForm">
+<div class="dialog-body">
+<input type="hidden" id="resourceId">
+<div class="form-grid">
+<div class="field full"><label for="titleInput">TÍTULO *</label><input id="titleInput" required maxlength="120" placeholder="Ej. Diseñamos un puente resistente"></div>
+<div class="field"><label for="typeInput">TIPO *</label><select id="typeInput" required><option>Actividad</option><option>Proyecto</option><option>Plantilla</option><option>Idea</option><option>Otro</option></select></div>
+<div class="field"><label for="courseInput">CURSO</label><input id="courseInput" list="courseOptions" placeholder="Ej. 2.º ESO"><datalist id="courseOptions"><option>1.º ESO</option><option>2.º ESO</option><option>3.º ESO</option><option>4.º ESO</option><option>1.º Bachillerato</option><option>2.º Bachillerato</option></datalist></div>
+<div class="field"><label for="subjectInput">MATERIA</label><input id="subjectInput" list="subjectOptions" placeholder="Ej. Tecnología"><datalist id="subjectOptions"><option>Tecnología y Digitalización</option><option>Tecnología</option><option>Robótica</option><option>Computación y Robótica</option><option>Creación Digital y Pensamiento Computacional</option><option>TICO</option></datalist></div>
+<div class="field"><label for="durationInput">DURACIÓN</label><input id="durationInput" placeholder="Ej. 2 sesiones o 50 min" maxlength="60"></div>
+<div class="field full"><label for="descriptionInput">DESCRIPCIÓN</label><textarea id="descriptionInput" maxlength="1500" placeholder="¿En qué consiste? ¿Qué hace falta preparar? ¿Qué debe producir el alumnado?"></textarea></div>
+<div class="field full"><label for="tagsInput">ETIQUETAS</label><input id="tagsInput" placeholder="programación, estructuras, trabajo en equipo"><div class="hint">Separa las etiquetas con comas para encontrarlas fácilmente.</div></div>
+<div class="field full"><label for="materialsInput">MATERIALES Y ENLACES</label><textarea id="materialsInput" maxlength="1000" placeholder="Materiales necesarios, enlaces de referencia o notas para futuras versiones."></textarea></div>
+</div>
+</div>
+<div class="dialog-actions"><button type="button" class="btn ghost" id="cancelDialog">Cancelar</button><button type="submit" class="btn primary">Guardar recurso</button></div>
+</form>
+</section>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+'use strict';
+const STORAGE_KEY='profealbertod_utilidades_recursos_v1';
+const $=id=>document.getElementById(id);
+let resources=[];
+let toastTimer;
+function uid(){return 'r_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8)}
+function escapeHTML(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function load(){
+ try{const raw=localStorage.getItem(STORAGE_KEY);const parsed=raw?JSON.parse(raw):[];resources=Array.isArray(parsed)?parsed.filter(x=>x&&typeof x==='object'&&x.id):[]}
+ catch(e){resources=[];notify('No se pudieron leer los recursos guardados. Puedes importar una copia JSON.')}
+}
+function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(resources));return true}catch(e){notify('No se pudo guardar. Puede que el almacenamiento esté lleno.');return false}}
+function notify(message){const t=$('toast');t.textContent=message;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2800)}
+function uniqueValues(key){return [...new Set(resources.map(r=>(r[key]||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es'))}
+function refreshFilter(selectId,key,allLabel){const select=$(selectId),old=select.value;select.innerHTML='';const first=document.createElement('option');first.value='';first.textContent=allLabel;select.appendChild(first);uniqueValues(key).forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;select.appendChild(o)});if([...select.options].some(o=>o.value===old))select.value=old}
+function render(){
+ $('totalStat').textContent=resources.length;
+ $('projectsStat').textContent=resources.filter(r=>r.type==='Proyecto').length;
+ $('coursesStat').textContent=uniqueValues('course').length;
+ refreshFilter('courseFilter','course','Todos los cursos');
+ refreshFilter('subjectFilter','subject','Todas las materias');
+ const q=$('searchInput').value.trim().toLocaleLowerCase('es');
+ const type=$('typeFilter').value,course=$('courseFilter').value,subject=$('subjectFilter').value;
+ const filtered=resources.filter(r=>{
+  const text=[r.title,r.description,r.subject,r.course,r.type,r.duration,r.tags,r.materials].flat().join(' ').toLocaleLowerCase('es');
+  return (!q||text.includes(q))&&(!type||r.type===type)&&(!course||r.course===course)&&(!subject||r.subject===subject);
+ }).sort((a,b)=>(b.updatedAt||b.createdAt||'').localeCompare(a.updatedAt||a.createdAt||''));
+ $('resultCount').textContent=filtered.length===resources.length?filtered.length+' recurso(s) en tu biblioteca':filtered.length+' de '+resources.length+' recurso(s)';
+ const container=$('resourceCards');
+ if(!filtered.length){
+  container.className='';container.innerHTML='<div class="empty" style="grid-column:1/-1"><strong>'+(resources.length?'No hay resultados con esos filtros.':'Tu biblioteca empieza aquí.')+'</strong><p>'+(resources.length?'Prueba a cambiar la búsqueda o limpiar los filtros.':'Añade tu primera actividad, proyecto, plantilla o idea. Tus recursos quedarán guardados en este navegador.')+'</p>'+(resources.length?'<button class="btn" id="emptyClear">Limpiar filtros</button>':'<button class="btn primary" id="emptyAdd">＋ Añadir primer recurso</button>')+'</div>';
+  const clear=$('emptyClear'),add=$('emptyAdd');if(clear)clear.onclick=clearFilters;if(add)add.onclick=()=>openDialog();return;
+ }
+ container.className='cards';
+ container.innerHTML=filtered.map(r=>'<article class="resource"><div class="card-top"><span class="tag">'+escapeHTML(r.type||'Otro')+'</span><span class="course">'+escapeHTML(r.course||'Sin curso')+'</span></div><h3>'+escapeHTML(r.title)+'</h3><p>'+escapeHTML(r.description||'Sin descripción.')+'</p><div class="meta">'+(r.subject?'<span class="chip">'+escapeHTML(r.subject)+'</span>':'')+(r.duration?'<span class="chip">'+escapeHTML(r.duration)+'</span>':'')+((r.tags||[]).slice(0,4).map(t=>'<span class="chip"># '+escapeHTML(t)+'</span>').join(''))+'</div><div class="card-actions"><button class="btn small" data-action="edit" data-id="'+escapeHTML(r.id)+'">Editar</button><button class="btn small" data-action="duplicate" data-id="'+escapeHTML(r.id)+'">Duplicar</button><button class="btn small danger" data-action="delete" data-id="'+escapeHTML(r.id)+'">Eliminar</button></div></article>').join('');
+}
+function clearFilters(){$('searchInput').value='';$('typeFilter').value='';$('courseFilter').value='';$('subjectFilter').value='';render()}
+function openDialog(resource){
+ $('resourceForm').reset();$('resourceId').value=resource?.id||'';
+ $('dialogTitle').textContent=resource?'Editar recurso':'Añadir recurso';
+ $('titleInput').value=resource?.title||'';$('typeInput').value=resource?.type||'Actividad';$('courseInput').value=resource?.course||'';$('subjectInput').value=resource?.subject||'';$('durationInput').value=resource?.duration||'';$('descriptionInput').value=resource?.description||'';$('tagsInput').value=(resource?.tags||[]).join(', ');$('materialsInput').value=resource?.materials||'';
+ $('dialogBackdrop').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>$('titleInput').focus(),50);
+}
+function closeDialog(){$('dialogBackdrop').classList.remove('open');document.body.style.overflow=''}
+function saveForm(e){
+ e.preventDefault();const id=$('resourceId').value;const previous=resources.find(r=>r.id===id);const now=new Date().toISOString();
+ const item={id:id||uid(),title:$('titleInput').value.trim(),type:$('typeInput').value,course:$('courseInput').value.trim(),subject:$('subjectInput').value.trim(),duration:$('durationInput').value.trim(),description:$('descriptionInput').value.trim(),tags:$('tagsInput').value.split(',').map(t=>t.trim()).filter(Boolean).slice(0,20),materials:$('materialsInput').value.trim(),createdAt:previous?.createdAt||now,updatedAt:now};
+ if(!item.title){$('titleInput').focus();return}
+ if(previous)resources=resources.map(r=>r.id===id?item:r);else resources.push(item);
+ if(persist()){closeDialog();render();notify(previous?'Recurso actualizado.':'Recurso guardado en tu biblioteca.')}
+}
+function duplicate(id){const original=resources.find(r=>r.id===id);if(!original)return;const copy={...original,id:uid(),title:original.title+' (copia)',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()};resources.push(copy);if(persist()){render();notify('Se ha creado una copia editable.')}}
+function remove(id){const r=resources.find(x=>x.id===id);if(!r)return;if(!confirm('¿Quieres eliminar «'+r.title+'»? Esta acción no se puede deshacer salvo que tengas una copia exportada.'))return;resources=resources.filter(x=>x.id!==id);if(persist()){render();notify('Recurso eliminado.')}}
+function exportJSON(){const payload={app:'ProfeAlbertoD Utilidades',version:1,exportedAt:new Date().toISOString(),resources};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='profealbertod-recursos-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);notify('Copia JSON preparada.')}
+function importJSON(file){if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const parsed=JSON.parse(String(reader.result));const incoming=Array.isArray(parsed)?parsed:parsed.resources;if(!Array.isArray(incoming))throw new Error('Formato no válido');const valid=incoming.filter(r=>r&&typeof r.title==='string'&&r.title.trim()).map(r=>({...r,id:uid(),title:r.title.trim(),type:r.type||'Otro',tags:Array.isArray(r.tags)?r.tags:[]}));if(!valid.length){notify('El archivo no contiene recursos válidos.');return}const replace=confirm('Se han encontrado '+valid.length+' recurso(s).\n\nAceptar: añadirlos a tu biblioteca.\nCancelar: no importar.');if(!replace)return;resources=[...resources,...valid];if(persist()){render();notify('Se han importado '+valid.length+' recurso(s).')}}catch(e){notify('No se ha podido importar: revisa que sea una copia JSON válida.')}};reader.readAsText(file)}
+$('addBtn').addEventListener('click',()=>openDialog());$('closeDialog').addEventListener('click',closeDialog);$('cancelDialog').addEventListener('click',closeDialog);$('resourceForm').addEventListener('submit',saveForm);
+$('dialogBackdrop').addEventListener('click',e=>{if(e.target===$('dialogBackdrop'))closeDialog()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDialog()});
+['searchInput','typeFilter','courseFilter','subjectFilter'].forEach(id=>$(id).addEventListener(id==='searchInput'?'input':'change',render));
+$('clearFilters').addEventListener('click',clearFilters);$('exportBtn').addEventListener('click',exportJSON);$('importBtn').addEventListener('click',()=>$('importFile').click());$('importFile').addEventListener('change',e=>{importJSON(e.target.files[0]);e.target.value=''});
+$('resourceCards').addEventListener('click',e=>{const b=e.target.closest('button[data-action]');if(!b)return;const id=b.dataset.id,action=b.dataset.action;if(action==='edit'){const r=resources.find(x=>x.id===id);if(r)openDialog(r)}else if(action==='duplicate')duplicate(id);else if(action==='delete')remove(id)});
+load();render();
+})();
+</script>
+</body>
+</html>
